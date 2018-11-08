@@ -1,3 +1,9 @@
+language: python
+
+env: 
+  global:
+    - CONDA_DEPENDENCIES="astropy astroquery"
+
 jobs:
   include:
     - script: python convert.py
@@ -14,4 +20,4 @@ jobs:
 install:
     - git clone git://github.com/astropy/ci-helpers.git
     - source ci-helpers/travis/setup_conda.sh
-    - conda install astropy
+    - pip install git://github.com/eteq/nbpages.git
