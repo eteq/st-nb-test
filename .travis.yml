@@ -12,11 +12,13 @@ jobs:
     - stage: deploy
       script: python convert.py
       deploy:
-        if: branch = master 
         provider: pages
         skip-cleanup: true
         github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
         keep-history: true
+        on:
+          branch: master
+          condition: $TRAVIS_PULL_REQUEST = false
 
 install:
     - git clone git://github.com/astropy/ci-helpers.git
