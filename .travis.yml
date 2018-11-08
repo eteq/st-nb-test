@@ -2,7 +2,9 @@ language: python
 
 env: 
   global:
-    - CONDA_DEPENDENCIES="astropy astroquery"
+    - CONDA_CHANNELS='astropy-ci-extras astropy'
+    - CONDA_DEPENDENCIES="astropy astroquery matplotlib jupyter nbcovert"
+    - PYTHON_VERSION=3.6
 
 jobs:
   include:
