@@ -11,7 +11,7 @@ jobs:
     - name: run/convert notebooks
       script: python convert.py
     - name: check notebooks
-      script: python -m "nbpages.check_nbs"
+      script: python -m "nbpages.check_nbs" --range= ${TRAVIS_COMMIT_RANGE/.../..}  # see https://github.com/travis-ci/travis-ci/issues/4596 for why this bit in TRAVIS_COMMIT_RANGE is necessary
     - stage: deploy
       if: type != "pull_request" AND branch = "master"
       script: python convert.py
