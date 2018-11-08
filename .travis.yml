@@ -1,0 +1,25 @@
+language: python
+
+env: 
+  global:
+    - CONDA_CHANNELS='astropy-ci-extras astropy'
+    - CONDA_DEPENDENCIES="astropy astroquery matplotlib jupyter"
+    - PYTHON_VERSION=3.6
+
+jobs:
+  include:
+    - script: python convert.py
+    - stage: deploy
+      script: python convert.py
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+        keep-history: true
+        on:
+          branch: master
+
+install:
+    - git clone git://github.com/astropy/ci-helpers.git
+    - source ci-helpers/travis/setup_conda.sh
+    - pip install git+https://github.com/eteq/nbpages.git#egg=nbpages
