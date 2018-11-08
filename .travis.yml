@@ -12,6 +12,7 @@ jobs:
     - stage: deploy
       script: python convert.py
       deploy:
+        if: type != "pull_request" AND branch = "master" 
         provider: pages
         skip-cleanup: true
         github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
